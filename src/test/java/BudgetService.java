@@ -10,10 +10,15 @@ public class BudgetService {
 
     public double totalAmount(LocalDate start, LocalDate end) {
         List<Budget> budgets = repo.getAll();
-        if (budgets.size() > 0) {
-            Budget budget = budgets.get(0);
-            return budget.overlappingAmount(new Period(start, end));
+        double totalAmount = 0;
+        for (Budget budget : budgets) {
+            totalAmount += budget.overlappingAmount(new Period(start, end));
         }
-        return 0;
+        return totalAmount;
+//        if (budgets.size() > 0) {
+//            Budget budget = budgets.get(0);
+//            return budget.overlappingAmount(new Period(start, end));
+//        }
+//        return 0;
     }
 }
