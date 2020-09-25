@@ -20,6 +20,10 @@ public class Budget {
         return (double) amount / days();
     }
 
+    double overlappingAmount(Period period) {
+        return period.overlappingDays(createPeriod()) * getDailyAmount();
+    }
+
     private LocalDate firstDay() {
         return LocalDate.parse(yearMonth + "01", ofPattern("yyyyMMdd"));
     }
