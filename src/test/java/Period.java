@@ -20,10 +20,10 @@ public class Period {
     }
 
     long overlappingDays(Period another) {
-        if (start.isAfter(end)) {
+        if (isValid()) {
             return 0;
         }
-        if (getEnd().isBefore(another.start) || getStart().isAfter(another.end)) {
+        if (withoutOverlap(another)) {
             return 0;
         }
         LocalDate overlappingStart = getStart().isAfter(another.start)
@@ -33,5 +33,13 @@ public class Period {
                 ? getEnd()
                 : another.end;
         return DAYS.between(overlappingStart, overlappingEnd) + 1;
+    }
+
+    private boolean withoutOverlap(Period another) {
+        return getEnd().isBefore(another.start) || getStart().isAfter(another.end);
+    }
+
+    private boolean isValid() {
+        return start.isAfter(end);
     }
 }
