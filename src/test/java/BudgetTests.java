@@ -29,6 +29,15 @@ public class BudgetTests {
                 , LocalDate.of(2020, 4, 1));
     }
 
+    @Test
+    public void period_without_overlap_before_budget_first_day() {
+        givenBudgets(new Budget("202004", 30));
+
+        totalAmountShouldBe(0
+                , LocalDate.of(2020, 3, 31)
+                , LocalDate.of(2020, 3, 31));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(repo.getAll()).thenReturn(Arrays.asList(budgets));
     }
