@@ -16,6 +16,9 @@ public class BudgetService {
             if (end.isBefore(budgets.get(0).firstDay())) {
                 return 0;
             }
+            if (start.isAfter(budgets.get(0).lastDay())) {
+                return 0;
+            }
             long days = DAYS.between(start, end) + 1;
             return days;
         }

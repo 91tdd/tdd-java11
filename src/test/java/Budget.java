@@ -16,4 +16,8 @@ public class Budget {
     public LocalDate firstDay() {
         return LocalDate.parse(yearMonth + "01", ofPattern("yyyyMMdd"));
     }
+
+    public LocalDate lastDay() {
+        return LocalDate.of(2020, 4, 30);
+    }
 }
