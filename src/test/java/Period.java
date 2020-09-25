@@ -11,14 +11,6 @@ public class Period {
         this.end = end;
     }
 
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
-    }
-
     long overlappingDays(Period another) {
         if (isValid() || withoutOverlap(another)) {
             return 0;
@@ -30,6 +22,14 @@ public class Period {
                 ? getEnd()
                 : another.end;
         return DAYS.between(overlappingStart, overlappingEnd) + 1;
+    }
+
+    private LocalDate getStart() {
+        return start;
+    }
+
+    private LocalDate getEnd() {
+        return end;
     }
 
     private boolean withoutOverlap(Period another) {

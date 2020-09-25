@@ -12,16 +12,16 @@ public class Budget {
         this.amount = amount;
     }
 
-    Period createPeriod() {
+    double overlappingAmount(Period period) {
+        return period.overlappingDays(createPeriod()) * getDailyAmount();
+    }
+
+    private Period createPeriod() {
         return new Period(firstDay(), lastDay());
     }
 
-    double getDailyAmount() {
+    private double getDailyAmount() {
         return (double) amount / days();
-    }
-
-    double overlappingAmount(Period period) {
-        return period.overlappingDays(createPeriod()) * getDailyAmount();
     }
 
     private LocalDate firstDay() {
