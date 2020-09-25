@@ -14,20 +14,20 @@ public class BudgetService {
         List<Budget> budgets = repo.getAll();
         if (budgets.size() > 0) {
             Budget budget = budgets.get(0);
-            return overlappingDays(start, end, budget);
+            return overlappingDays(new Period(start, end), budget);
         }
         return 0;
     }
 
-    private long overlappingDays(LocalDate start, LocalDate end, Budget budget) {
-        if (end.isBefore(budget.firstDay()) || start.isAfter(budget.lastDay())) {
+    private long overlappingDays(Period period, Budget budget) {
+        if (period.getEnd().isBefore(budget.firstDay()) || period.getStart().isAfter(budget.lastDay())) {
             return 0;
         }
-        LocalDate overlappingStart = start.isAfter(budget.firstDay())
-                ? start
+        LocalDate overlappingStart = period.getStart().isAfter(budget.firstDay())
+                ? period.getStart()
                 : budget.firstDay();
-        LocalDate overlappingEnd = end.isBefore(budget.lastDay())
-                ? end
+        LocalDate overlappingEnd = period.getEnd().isBefore(budget.lastDay())
+                ? period.getEnd()
                 : budget.lastDay();
         return DAYS.between(overlappingStart, overlappingEnd) + 1;
     }
