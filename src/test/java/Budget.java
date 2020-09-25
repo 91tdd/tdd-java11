@@ -24,4 +24,8 @@ public class Budget {
         YearMonth month = YearMonth.of(firstDay.getYear(), firstDay.getMonth());
         return month.atEndOfMonth();
     }
+
+    Period createPeriod() {
+        return new Period(firstDay(), lastDay());
+    }
 }
