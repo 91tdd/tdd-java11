@@ -24,11 +24,6 @@ public class Budget {
         return month.atEndOfMonth();
     }
 
-    private YearMonth getYearMonth() {
-        LocalDate firstDay = firstDay();
-        return YearMonth.of(firstDay.getYear(), firstDay.getMonth());
-    }
-
     public int days() {
         YearMonth month = getYearMonth();
         return month.lengthOfMonth();
@@ -36,5 +31,14 @@ public class Budget {
 
     Period createPeriod() {
         return new Period(firstDay(), lastDay());
+    }
+
+    double getDailyAmount() {
+        return (double) amount / days();
+    }
+
+    private YearMonth getYearMonth() {
+        LocalDate firstDay = firstDay();
+        return YearMonth.of(firstDay.getYear(), firstDay.getMonth());
     }
 }
