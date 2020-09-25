@@ -12,12 +12,12 @@ public class BudgetService {
         List<Budget> budgets = repo.getAll();
         if (budgets.size() > 0) {
             Budget budget = budgets.get(0);
-            return overlappingAmount(start, end, budget);
+            return overlappingAmount(budget, new Period(start, end));
         }
         return 0;
     }
 
-    private double overlappingAmount(LocalDate start, LocalDate end, Budget budget) {
-        return new Period(start, end).overlappingDays(budget.createPeriod()) * budget.getDailyAmount();
+    private double overlappingAmount(Budget budget, Period period) {
+        return period.overlappingDays(budget.createPeriod()) * budget.getDailyAmount();
     }
 }
