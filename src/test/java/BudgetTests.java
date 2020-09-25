@@ -83,6 +83,18 @@ public class BudgetTests {
                 , LocalDate.of(2020, 4, 3));
     }
 
+    @Test
+    public void multiple_budgets() {
+        givenBudgets(
+                new Budget("202003", 31),
+                new Budget("202004", 300),
+                new Budget("202005", 3100));
+
+        totalAmountShouldBe(1 + 300 + 400
+                , LocalDate.of(2020, 3, 31)
+                , LocalDate.of(2020, 5, 4));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(repo.getAll()).thenReturn(Arrays.asList(budgets));
     }
