@@ -20,10 +20,7 @@ public class Period {
     }
 
     long overlappingDays(Period another) {
-        if (isValid()) {
-            return 0;
-        }
-        if (withoutOverlap(another)) {
+        if (isValid() || withoutOverlap(another)) {
             return 0;
         }
         LocalDate overlappingStart = getStart().isAfter(another.start)
