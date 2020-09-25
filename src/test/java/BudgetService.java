@@ -9,16 +9,13 @@ public class BudgetService {
     }
 
     public double totalAmount(LocalDate start, LocalDate end) {
-        List<Budget> budgets = repo.getAll();
-        double totalAmount = 0;
-        for (Budget budget : budgets) {
-            totalAmount += budget.overlappingAmount(new Period(start, end));
-        }
-        return totalAmount;
-//        if (budgets.size() > 0) {
-//            Budget budget = budgets.get(0);
-//            return budget.overlappingAmount(new Period(start, end));
-//        }
-//        return 0;
+        Period period = new Period(start, end);
+
+        return repo.getAll()
+                .stream()
+                .mapToDouble(budget -> {
+                    return budget.overlappingAmount(period);
+                })
+                .sum();
     }
 }
