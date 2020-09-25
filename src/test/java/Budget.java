@@ -1,12 +1,17 @@
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Budget {
-    public Budget(String yearMonth, int amount) {
+    private final String yearMonth;
+    private final int amount;
 
+    public Budget(String yearMonth, int amount) {
+        this.yearMonth = yearMonth;
+        this.amount = amount;
     }
 
     public LocalDate firstDay() {
-        return LocalDate.of(2020, 4, 1);
+        return LocalDate.parse(yearMonth + "01", DateTimeFormatter.ofPattern("yyyyMMdd"));
     }
 }
