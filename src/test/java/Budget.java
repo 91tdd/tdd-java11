@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -18,6 +20,8 @@ public class Budget {
     }
 
     public LocalDate lastDay() {
-        return LocalDate.of(2020, 4, 30);
+        LocalDate firstDay = firstDay();
+        YearMonth month = YearMonth.of(firstDay.getYear(), firstDay.getMonth());
+        return month.atEndOfMonth();
     }
 }
