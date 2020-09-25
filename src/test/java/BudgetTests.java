@@ -65,6 +65,15 @@ public class BudgetTests {
                 , LocalDate.of(2020, 5, 1));
     }
 
+    @Test
+    public void invalid_period() {
+        givenBudgets(new Budget("202004", 30));
+
+        totalAmountShouldBe(0
+                , LocalDate.of(2020, 4, 30)
+                , LocalDate.of(2020, 4, 1));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(repo.getAll()).thenReturn(Arrays.asList(budgets));
     }
