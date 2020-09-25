@@ -20,14 +20,17 @@ public class Budget {
     }
 
     public LocalDate lastDay() {
-        LocalDate firstDay = firstDay();
-        YearMonth month = YearMonth.of(firstDay.getYear(), firstDay.getMonth());
+        YearMonth month = getYearMonth();
         return month.atEndOfMonth();
     }
 
-    public int days() {
+    private YearMonth getYearMonth() {
         LocalDate firstDay = firstDay();
-        YearMonth month = YearMonth.of(firstDay.getYear(), firstDay.getMonth());
+        return YearMonth.of(firstDay.getYear(), firstDay.getMonth());
+    }
+
+    public int days() {
+        YearMonth month = getYearMonth();
         return month.lengthOfMonth();
     }
 
