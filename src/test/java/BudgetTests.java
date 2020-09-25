@@ -74,6 +74,15 @@ public class BudgetTests {
                 , LocalDate.of(2020, 4, 1));
     }
 
+    @Test
+    public void daily_amount_is_10() {
+        givenBudgets(new Budget("202004", 300));
+
+        totalAmountShouldBe(30
+                , LocalDate.of(2020, 4, 1)
+                , LocalDate.of(2020, 4, 3));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(repo.getAll()).thenReturn(Arrays.asList(budgets));
     }
