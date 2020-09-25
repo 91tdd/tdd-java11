@@ -17,7 +17,10 @@ public class BudgetService {
             if (end.isBefore(budget.firstDay()) || start.isAfter(budget.lastDay())) {
                 return 0;
             }
-            return DAYS.between(start, end) + 1;
+            LocalDate overlappingStart = start.isAfter(budget.firstDay())
+                    ? start
+                    : budget.firstDay();
+            return DAYS.between(overlappingStart, end) + 1;
         }
         return 0;
     }
