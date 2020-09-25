@@ -19,8 +19,7 @@ public class Period {
         return end;
     }
 
-    long overlappingDays(Budget budget) {
-        Period another = new Period(budget.firstDay(), budget.lastDay());
+    long overlappingDays(Period another) {
         if (getEnd().isBefore(another.start) || getStart().isAfter(another.end)) {
             return 0;
         }
