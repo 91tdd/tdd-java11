@@ -7,8 +7,8 @@ import java.time.format.DateTimeFormatter;
 import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class Budget {
-    private final String yearMonth;
     public final int amount;
+    private final String yearMonth;
 
     public Budget(String yearMonth, int amount) {
         this.yearMonth = yearMonth;
@@ -26,7 +26,9 @@ public class Budget {
     }
 
     public int days() {
-        return 30;
+        LocalDate firstDay = firstDay();
+        YearMonth month = YearMonth.of(firstDay.getYear(), firstDay.getMonth());
+        return month.lengthOfMonth();
     }
 
     Period createPeriod() {
