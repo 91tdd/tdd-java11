@@ -14,6 +14,7 @@ public class BudgetTests {
 
     @Test
     public void no_budgets() {
+        givenBudgets();
         totalAmountShouldBe(0
                 , LocalDate.of(2020, 4, 1)
                 , LocalDate.of(2020, 4, 1));
@@ -21,11 +22,15 @@ public class BudgetTests {
 
     @Test
     public void period_inside_budget_month() {
-        when(repo.getAll()).thenReturn(Arrays.asList(new Budget("202004", 30)));
+        givenBudgets(new Budget("202004", 30));
 
         totalAmountShouldBe(1
                 , LocalDate.of(2020, 4, 1)
                 , LocalDate.of(2020, 4, 1));
+    }
+
+    private void givenBudgets(Budget... budgets) {
+        when(repo.getAll()).thenReturn(Arrays.asList(budgets));
     }
 
     private void totalAmountShouldBe(double expected, LocalDate start, LocalDate end) {
