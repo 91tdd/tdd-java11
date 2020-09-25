@@ -21,17 +21,15 @@ public class Period {
 
     long overlappingDays(Budget budget) {
         Period another = new Period(budget.firstDay(), budget.lastDay());
-        LocalDate firstDay = another.start;
-        LocalDate lastDay = another.end;
-        if (getEnd().isBefore(firstDay) || getStart().isAfter(lastDay)) {
+        if (getEnd().isBefore(another.start) || getStart().isAfter(another.end)) {
             return 0;
         }
-        LocalDate overlappingStart = getStart().isAfter(firstDay)
+        LocalDate overlappingStart = getStart().isAfter(another.start)
                 ? getStart()
-                : firstDay;
-        LocalDate overlappingEnd = getEnd().isBefore(lastDay)
+                : another.start;
+        LocalDate overlappingEnd = getEnd().isBefore(another.end)
                 ? getEnd()
-                : lastDay;
+                : another.end;
         return DAYS.between(overlappingStart, overlappingEnd) + 1;
     }
 }
