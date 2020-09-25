@@ -13,14 +13,11 @@ public class BudgetService {
     public double totalAmount(LocalDate start, LocalDate end) {
         List<Budget> budgets = repo.getAll();
         if (budgets.size() > 0) {
-            if (end.isBefore(budgets.get(0).firstDay())) {
+            Budget budget = budgets.get(0);
+            if (end.isBefore(budget.firstDay()) || start.isAfter(budget.lastDay())) {
                 return 0;
             }
-            if (start.isAfter(budgets.get(0).lastDay())) {
-                return 0;
-            }
-            long days = DAYS.between(start, end) + 1;
-            return days;
+            return DAYS.between(start, end) + 1;
         }
         return 0;
     }
