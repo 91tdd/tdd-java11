@@ -55,6 +55,15 @@ public class BudgetTests {
                 LocalDate.of(2000, 4, 2));
     }
 
+    @Test
+    public void period_overlap_budget_last_day() {
+        givenBudgets(new Budget("200004", 30));
+
+        totalAmountShouldBe(1,
+                LocalDate.of(2000, 5, 1),
+                LocalDate.of(2000, 4, 30));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(budgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
