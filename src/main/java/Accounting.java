@@ -11,16 +11,9 @@ public class Accounting {
 
     public double totalAmount(LocalDate start, LocalDate end) {
         Period period = new Period(start, end);
-        List<Budget> budgets = budgetRepo.getAll();
-        if (budgets.size() > 0) {
-            double totalAmount = 0;
-            for (Budget budget : budgets) {
-
-//                Budget budget = budgets.get(0);
-                totalAmount += budget.overlappingAmount(period);
-            }
-            return totalAmount;
-        }
-        return 0;
+        return budgetRepo.getAll()
+                .stream()
+                .mapToDouble(budget -> budget.overlappingAmount(period))
+                .sum();
     }
 }
