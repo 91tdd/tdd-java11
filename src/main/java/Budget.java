@@ -16,6 +16,5 @@ public class Budget {
 
     public LocalDate firstDay() {
         return LocalDate.parse(yearMonth + "01", ofPattern("yyyyMMdd"));
-//        return LocalDate.of(2000, 4, 1);
     }
 }
