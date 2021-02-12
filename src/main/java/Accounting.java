@@ -13,7 +13,7 @@ public class Accounting {
         List<Budget> budgets = budgetRepo.getAll();
         if (budgets.size() > 0) {
             Budget budget = budgets.get(0);
-            return new Period(start, end).overlappingDays(budget);
+            return new Period(start, end).overlappingDays(new Period(budget.firstDay(), budget.lastDay()));
         }
         return 0;
     }
