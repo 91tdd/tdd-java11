@@ -13,8 +13,13 @@ public class Accounting {
         Period period = new Period(start, end);
         List<Budget> budgets = budgetRepo.getAll();
         if (budgets.size() > 0) {
-            Budget budget = budgets.get(0);
-            return budget.overlappingAmount(period);
+            double totalAmount = 0;
+            for (Budget budget : budgets) {
+
+//                Budget budget = budgets.get(0);
+                totalAmount += budget.overlappingAmount(period);
+            }
+            return totalAmount;
         }
         return 0;
     }
