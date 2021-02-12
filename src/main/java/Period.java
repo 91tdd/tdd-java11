@@ -20,6 +20,9 @@ public class Period {
     }
 
     long overlappingDays(Period another) {
+        if (start.isAfter(end)) {
+            return 0;
+        }
         if (getStart().isAfter(another.end) || getEnd().isBefore(another.start)) {
             return 0;
         }
