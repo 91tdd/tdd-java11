@@ -73,6 +73,15 @@ public class BudgetTests {
                 LocalDate.of(2000, 4, 1));
     }
 
+    @Test
+    public void daily_amount_is_10() {
+        givenBudgets(new Budget("200004", 300));
+
+        totalAmountShouldBe(20,
+                LocalDate.of(2000, 3, 30),
+                LocalDate.of(2000, 4, 2));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(budgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
