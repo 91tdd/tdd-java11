@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class Budget {
-    private final String yearMonth;
     public final int amount;
+    private final String yearMonth;
 
     public Budget(String yearMonth, int amount) {
 
@@ -20,11 +20,19 @@ public class Budget {
     }
 
     public LocalDate lastDay() {
-        YearMonth yearMonth = YearMonth.parse(this.yearMonth, ofPattern("yyyyMM"));
+        YearMonth yearMonth = getYearMonth();
         return yearMonth.atEndOfMonth();
+    }
+
+    public int days() {
+        return getYearMonth().lengthOfMonth();
     }
 
     Period createPeriod() {
         return new Period(firstDay(), lastDay());
+    }
+
+    private YearMonth getYearMonth() {
+        return YearMonth.parse(this.yearMonth, ofPattern("yyyyMM"));
     }
 }
