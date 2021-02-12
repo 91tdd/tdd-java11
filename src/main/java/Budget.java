@@ -1,5 +1,8 @@
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
+
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class Budget {
     private final String yearMonth;
@@ -12,6 +15,7 @@ public class Budget {
     }
 
     public LocalDate firstDay() {
-        return LocalDate.of(2000, 4, 1);
+        return LocalDate.parse(yearMonth + "01", ofPattern("yyyyMMdd"));
+//        return LocalDate.of(2000, 4, 1);
     }
 }
