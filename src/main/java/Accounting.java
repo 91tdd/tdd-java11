@@ -14,13 +14,9 @@ public class Accounting {
         if (budgets.size() > 0) {
             Budget budget = budgets.get(0);
             Period period = new Period(start, end);
-            double dailyAmount = dailyAmount(budget);
+            double dailyAmount = budget.dailyAmount();
             return dailyAmount * period.overlappingDays(budget.createPeriod());
         }
         return 0;
-    }
-
-    private double dailyAmount(Budget budget) {
-        return budget.amount / budget.days();
     }
 }

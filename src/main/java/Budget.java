@@ -32,6 +32,10 @@ public class Budget {
         return new Period(firstDay(), lastDay());
     }
 
+    double dailyAmount() {
+        return amount / days();
+    }
+
     private YearMonth getYearMonth() {
         return YearMonth.parse(this.yearMonth, ofPattern("yyyyMM"));
     }
