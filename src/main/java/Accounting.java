@@ -22,7 +22,10 @@ public class Accounting {
             LocalDate overlappingStart = start.isAfter(budget.firstDay())
                     ? start
                     : budget.firstDay();
-            return DAYS.between(overlappingStart, end) + 1;
+            LocalDate overlappingEnd = end.isBefore(budget.lastDay())
+                    ? end
+                    : budget.lastDay();
+            return DAYS.between(overlappingStart, overlappingEnd) + 1;
         }
         return 0;
     }

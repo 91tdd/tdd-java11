@@ -60,8 +60,8 @@ public class BudgetTests {
         givenBudgets(new Budget("200004", 30));
 
         totalAmountShouldBe(1,
-                LocalDate.of(2000, 5, 1),
-                LocalDate.of(2000, 4, 30));
+                LocalDate.of(2000, 4, 30),
+                LocalDate.of(2000, 5, 1));
     }
 
     private void givenBudgets(Budget... budgets) {
