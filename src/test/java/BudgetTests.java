@@ -64,6 +64,15 @@ public class BudgetTests {
                 LocalDate.of(2000, 5, 1));
     }
 
+    @Test
+    public void invalid_period() {
+        givenBudgets(new Budget("200004", 30));
+
+        totalAmountShouldBe(0,
+                LocalDate.of(2000, 4, 30),
+                LocalDate.of(2000, 4, 1));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(budgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
