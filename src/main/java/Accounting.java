@@ -14,8 +14,7 @@ public class Accounting {
     public double totalAmount(LocalDate start, LocalDate end) {
         List<Budget> budgets = budgetRepo.getAll();
         if (budgets.size() > 0) {
-            long days = DAYS.between(start, end) + 1;
-            return days;
+            return DAYS.between(start, end) + 1;
         }
         return 0;
     }
