@@ -21,13 +21,15 @@ public class BudgetTests {
 
     @Test
     public void period_inside_budget_month() {
-        when(budgetRepo.getAll()).thenReturn(Arrays.asList(
-                new Budget("200004", 30)
-        ));
+        givenBudgets(new Budget("200004", 30));
 
         totalAmountShouldBe(1,
                 LocalDate.of(2000, 4, 1),
                 LocalDate.of(2000, 4, 1));
+    }
+
+    private void givenBudgets(Budget... budgets) {
+        when(budgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
 
     private void totalAmountShouldBe(int expected, LocalDate start, LocalDate end) {
