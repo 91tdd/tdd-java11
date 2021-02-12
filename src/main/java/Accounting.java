@@ -15,6 +15,9 @@ public class Accounting {
         List<Budget> budgets = budgetRepo.getAll();
         if (budgets.size() > 0) {
             Budget budget = budgets.get(0);
+            if (start.isAfter(budget.lastDay())) {
+                return 0;
+            }
             if (end.isBefore(budget.firstDay())) {
                 return 0;
             }
