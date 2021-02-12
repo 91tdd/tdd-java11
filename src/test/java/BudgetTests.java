@@ -82,6 +82,18 @@ public class BudgetTests {
                 LocalDate.of(2000, 4, 2));
     }
 
+    @Test
+    public void multiple_budgets() {
+        givenBudgets(
+                new Budget("200003", 31),
+                new Budget("200004", 300),
+                new Budget("200005", 3100));
+
+        totalAmountShouldBe(2 + 300 + 100 * 10,
+                LocalDate.of(2000, 3, 30),
+                LocalDate.of(2000, 5, 10));
+    }
+
     private void givenBudgets(Budget... budgets) {
         when(budgetRepo.getAll()).thenReturn(Arrays.asList(budgets));
     }
